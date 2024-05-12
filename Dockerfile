@@ -1,8 +1,9 @@
 # Use official Node.js 14 image as base
-FROM node:14
+# FROM node:19.0.0-slim
+FROM node:18.17.0
 
 # Set working directory inside the container
-WORKDIR /app
+WORKDIR /burgan-task-api/src
 
 # Copy package.json and package-lock.json (if available) to work directory
 COPY package*.json ./
