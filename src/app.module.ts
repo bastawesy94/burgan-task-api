@@ -5,6 +5,7 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { join } from 'path';
 import * as dotenv from 'dotenv';
+import { MovieModule } from './movie/movie.module';
 
 dotenv.config();
 console.log("##############",process.env.DB_URL);
@@ -17,7 +18,8 @@ console.log("##############",process.env.DB_URL);
       synchronize: true,
       entities: [join(__dirname, '**', '*.entity.{ts,js}')]
     }),
-    UserModule
+    UserModule,
+    MovieModule
   ],
   controllers: [AppController],
   providers: [AppService],

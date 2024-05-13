@@ -1,14 +1,10 @@
-import * as pg from 'pg';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import {DataSourceOptions} from 'typeorm';
 import * as dotenv from 'dotenv';
 import { DataSource } from "typeorm";
 
 dotenv.config();
 
-
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-
-dotenv.config();
 console.log("################### CONFIG ", process.env.DB_URL);
 const typeOrmConfig: TypeOrmModuleOptions = {
     type: 'postgres',

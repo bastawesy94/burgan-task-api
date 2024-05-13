@@ -11,7 +11,9 @@ services:
       - .:/app
     depends_on:
       - postgres
+    # command: npm run seed  
     # command: npx typeorm-ts-node-esm migration:generate ./src/migrations/update-post-table -d ./src/datasource.config.ts #only for test
+    # command: npx typeorm-ts-node-commonjs migration:run  -d src/datasource.config.ts
             
 
   adminer:
