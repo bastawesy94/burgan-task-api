@@ -31,7 +31,7 @@ async function seed() {
                 const movie:MovieI =  {
                     title : row.Title, // Map 'Title' from CSV to 'title' in Movie entity
                     director : row.Director, // Map 'Director' from CSV to 'director' in Movie entity
-                    year : new Date(row.Year), // Map 'Year' from CSV to 'year' in Movie entity
+                    year : row.Year, // Map 'Year' from CSV to 'year' in Movie entity
                     country : row.Country, // Map 'Country' from CSV to 'country' in Movie entity
                     genre : row.Genre, // Map 'Genre' from CSV to 'genre' in Movie entity
                     colour : row.Colour, // Map 'Colour' from CSV to 'colour' in Movie entity

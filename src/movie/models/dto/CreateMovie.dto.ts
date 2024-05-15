@@ -1,7 +1,7 @@
 export class CreateMovieDto {
     title: string;
     director: string;
-    year: Date;
+    year: string;
     country: string;
     genre: string;
     colour: string;

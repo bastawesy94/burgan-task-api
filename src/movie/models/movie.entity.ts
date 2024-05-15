@@ -6,21 +6,21 @@ export class MovieEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({length:50})
+    @Column()
     title: string;
 
-    @Column({length:50})
+    @Column()
     director: string;
 
     @Column()
-    year: Date;
+    year: string;
 
-    @Column({length:50})
+    @Column()
     country: string;
 
-    @Column({length:50})
+    @Column()
     genre: string;
-    
-    @Column({length:50})
+
+    @Column()
     colour: string;
 }

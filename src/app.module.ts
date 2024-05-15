@@ -19,7 +19,7 @@ console.log("##############",process.env.DB_URL);
       entities: [join(__dirname, '**', '*.entity.{ts,js}')]
     }),
     UserModule,
-    MovieModule
+    MovieModule,
   ],
   controllers: [AppController],
   providers: [AppService],

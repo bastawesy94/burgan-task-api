@@ -10,8 +10,8 @@ const typeOrmConfig: TypeOrmModuleOptions = {
     type: 'postgres',
     url:process.env.DB_URL,
     synchronize: false,
-    migrations: [__dirname + '/../../typeorm-migrations/*.{ts,js}'],  
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    migrations: [__dirname + '/../src/migrations/*.{ts,js}'],  
+    entities: [__dirname + '/**/*.entity{.ts,.js}']
 };
 const datasource = new DataSource(typeOrmConfig as DataSourceOptions) ; // config is one that is defined in datasource.config.ts file
 datasource.initialize();
