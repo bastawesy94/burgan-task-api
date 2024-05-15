@@ -7,14 +7,12 @@ import { UserI } from '../models/user.interface';
 
 @Injectable()
 export class UserService {
+  constructor(
+    @InjectRepository(UserEntity)
+    private userRepository: Repository<UserEntity>,
+  ) {}
 
-    constructor(
-        @InjectRepository(UserEntity)
-        private userRepository: Repository<UserEntity>,
-    ) { }
-
-
-    findAll(): Observable<UserI[]> {
-        return from(this.userRepository.find());
-    }
+  findAll(): Observable<UserI[]> {
+    return from(this.userRepository.find());
+  }
 }

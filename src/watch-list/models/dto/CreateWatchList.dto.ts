@@ -1,4 +1,4 @@
 export class CreateWatchListDto {
-    watchListName: string;
-    password: string; 
+  watchListName: string;
+  password: string;
 }

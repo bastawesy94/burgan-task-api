@@ -1,30 +1,29 @@
-import { WatchListEntity } from "../../watch-list/models/watch-list.entity";
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { WatchListEntity } from '../../watch-list/models/watch-list.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: "movies"})
+@Entity({ name: 'movies' })
 export class MovieEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  title: string;
 
-    @Column()
-    title: string;
+  @Column()
+  director: string;
 
-    @Column()
-    director: string;
+  @Column()
+  year: string;
 
-    @Column()
-    year: string;
+  @Column()
+  country: string;
 
-    @Column()
-    country: string;
+  @Column()
+  genre: string;
 
-    @Column()
-    genre: string;
+  @Column()
+  colour: string;
 
-    @Column()
-    colour: string;
-
-    @OneToMany(() => WatchListEntity, (watchListEntity) => watchListEntity.movie)
-    watchList: WatchListEntity [];
+  @OneToMany(() => WatchListEntity, (watchListEntity) => watchListEntity.movie)
+  watchList: WatchListEntity[];
 }

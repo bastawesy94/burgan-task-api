@@ -5,10 +5,8 @@ import { WatchListService } from './service/watch-list.service';
 import { WatchListController } from './controller/watch-list.controller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([WatchListEntity])
-  ],
+  imports: [TypeOrmModule.forFeature([WatchListEntity])],
   providers: [WatchListService],
-  controllers: [WatchListController]
+  controllers: [WatchListController],
 })
 export class WatchListModule {}
