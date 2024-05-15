@@ -1,25 +1,18 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { WatchListEntity } from "../../watch-list/models/watch-list.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({name: "users"})
 export class UserEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    name: string;
-
-    @Column({unique: true})
-    email: string;
-
-    @Column()
-    age: number;
+    userName: string;
 
     @Column({select: false})
     password: string;
 
-    @BeforeInsert()
-    emailToLowerCase() {
-        this.email = this.email.toLowerCase();
-    }
+    @OneToMany(() => WatchListEntity, (watchListEntity) => watchListEntity.movie)
+    watchList: WatchListEntity [];
 }

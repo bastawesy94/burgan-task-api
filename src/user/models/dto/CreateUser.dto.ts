@@ -1,8 +1,4 @@
-import { LoginUserDto } from "./LoginUser.dto";
-
-
-export class CreateUserDto extends LoginUserDto {
-
-    name: string; 
-    
+export class CreateUserDto {
+    userName: string;
+    password: string; 
 }
