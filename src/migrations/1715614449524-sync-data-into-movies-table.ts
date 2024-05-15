@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 import { MovieEntity } from '../../src/movie/models/movie.entity';
 import { MovieI } from '@src/movie/models/movie.interface';
+/* eslint @typescript-eslint/no-var-requires: "off" */
 const csv = require('csvtojson');
 
 export class SyncDataIntoMoviesTable1715614449524
