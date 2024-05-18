@@ -23,7 +23,9 @@ export class WatchListService {
     return from(this.watchListRepository.find());
   }
 
-  async addToWatchList(createWatchListDto: CreateWatchListDto): Promise<WatchListEntity> {
+  async addToWatchList(
+    createWatchListDto: CreateWatchListDto,
+  ): Promise<WatchListEntity> {
     const { userId, movieId } = createWatchListDto;
 
     const user = await this.userRepository.findOne({ where: { id: userId } });
@@ -31,7 +33,9 @@ export class WatchListService {
       throw new NotFoundException('User not found');
     }
 
-    const movie = await this.movieRepository.findOne({ where: { id: movieId } });
+    const movie = await this.movieRepository.findOne({
+      where: { id: movieId },
+    });
     if (!movie) {
       throw new NotFoundException('Movie not found');
     }
