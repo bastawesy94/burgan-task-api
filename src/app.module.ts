@@ -4,11 +4,11 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { join } from 'path';
-import * as dotenv from 'dotenv';
 import { MovieModule } from './movie/movie.module';
 import { WatchListModule } from './watch-list/watch-list.module';
 import * as redisStore from 'cache-manager-redis-store';
 import { CacheModule } from '@nestjs/cache-manager';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 console.log('##############', process.env.DB_URL);

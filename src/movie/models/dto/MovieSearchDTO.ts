@@ -11,7 +11,7 @@ export class MovieSearchDTO {
 
   @IsOptional()
   @IsString()
-  year?: string;
+  year?: number;
 
   @IsOptional()
   @IsString()
