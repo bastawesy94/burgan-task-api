@@ -3,10 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { WatchListEntity } from './models/watch-list.entity';
 import { WatchListService } from './service/watch-list.service';
 import { WatchListController } from './controller/watch-list.controller';
+import { UserEntity } from '@src/user/models/user.entity';
+import { MovieEntity } from '@src/movie/models/movie.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([WatchListEntity])],
+  imports: [TypeOrmModule.forFeature([WatchListEntity,UserEntity,MovieEntity])],
   providers: [WatchListService],
   controllers: [WatchListController],
+  exports: [WatchListService],
 })
 export class WatchListModule {}

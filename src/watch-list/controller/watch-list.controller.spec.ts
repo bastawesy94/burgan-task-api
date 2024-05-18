@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { WatchListController } from './watchList.controller';
+import { WatchListController } from './watch-list.controller';
 
 describe('WatchListController', () => {
   let controller: WatchListController;

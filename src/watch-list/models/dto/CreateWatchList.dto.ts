@@ -1,4 +1,4 @@
 export class CreateWatchListDto {
-  watchListName: string;
-  password: string;
+  userId: number;
+  movieId: number;
 }
