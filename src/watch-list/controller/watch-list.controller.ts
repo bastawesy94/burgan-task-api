@@ -12,9 +12,14 @@ export class WatchListController {
     return this.watchListService.findAll();
   }
   @Post()
-  async addToWatchList(
-    @Body() createWatchListDto: any,
-  ): Promise<WatchListEntity> {
+  async addToWatchList(@Body() createWatchListDto: any): Promise<WatchListEntity> {
+    console.log("createWatchListDto -->",createWatchListDto)
     return this.watchListService.addToWatchList(createWatchListDto);
   }
+
+  @Post('add-value')
+  async addValueToMyWatchList(@Body() userBody: any): Promise<void> {
+    return this.watchListService.addValueToMyWatchList(userBody);
+  }
+  
 }
