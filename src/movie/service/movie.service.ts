@@ -7,6 +7,9 @@ import { MovieI } from '../models/movie.interface';
 import { MovieSearchDTO } from '../models/dto/MovieSearchDTO';
 import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Injectable()
 export class MovieService {
@@ -21,8 +24,8 @@ export class MovieService {
   }
 
   async searchMovies(searchDTO: MovieSearchDTO): Promise<any> {
-    const { title, director, page, year, country, genre, color, limit } =
-      searchDTO;
+    const { title, director, page=1, year, country, genre, color, limit=10 } =
+      searchDTO; 
     const cacheKey = `movies_${title}_${director}_${year}_${country}_${genre}_${color}_${page}_${limit}`;
     const cachedMovies = await this.cacheManager.get<{
       data: MovieEntity[];
@@ -67,7 +70,8 @@ export class MovieService {
       .getManyAndCount();
 
     const result = { data, total, page };
-    await this.cacheManager.set(cacheKey, result, { ttl: 600 }); // Cache for 10 minutes
+    await this.cacheManager.set(cacheKey, result, { ttl: Number(process.env.REDIS_TTL) }); 
+
 
     return result;
   }
