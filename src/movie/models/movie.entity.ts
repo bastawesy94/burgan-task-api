@@ -13,7 +13,7 @@ export class MovieEntity {
   director: string;
 
   @Column()
-  year: string;
+  year: number;
 
   @Column()
   country: string;
@@ -23,6 +23,24 @@ export class MovieEntity {
 
   @Column()
   colour: string;
+
+  @Column({ nullable: true })
+  overview: string;
+
+  @Column({ nullable: true })
+  adult: boolean;
+
+  @Column({ nullable: true })
+  poster_path: string;
+
+  @Column('decimal', { precision: 6, scale: 2, nullable: true })
+  vote_average: number;
+
+  @Column({ nullable: true })
+  vote_count: number;
+
+  @Column('decimal', { precision: 6, scale: 2, nullable: true })
+  popularity: number;
 
   @OneToMany(() => WatchListEntity, (watchListEntity) => watchListEntity.movie)
   watchList: WatchListEntity[];

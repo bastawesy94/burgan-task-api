@@ -7,7 +7,9 @@ import { UserEntity } from '@src/user/models/user.entity';
 import { MovieEntity } from '@src/movie/models/movie.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([WatchListEntity,UserEntity,MovieEntity])],
+  imports: [
+    TypeOrmModule.forFeature([WatchListEntity, UserEntity, MovieEntity]),
+  ],
   providers: [WatchListService],
   controllers: [WatchListController],
   exports: [WatchListService],

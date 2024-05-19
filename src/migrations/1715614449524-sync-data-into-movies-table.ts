@@ -19,12 +19,12 @@ export class SyncDataIntoMoviesTable1715614449524
     const jsonArray: any = await csv().fromFile(csvFilePath);
     for (let i = 0; i < jsonArray.length; i++) {
       const movie: MovieI = {
-        title: jsonArray[i].Title, // Map 'Title' from CSV to 'title' in Movie entity
-        director: jsonArray[i].Director, // Map 'Director' from CSV to 'director' in Movie entity
-        year: jsonArray[i].Year, // Map 'Year' from CSV to 'year' in Movie entity
-        country: jsonArray[i].Country, // Map 'Country' from CSV to 'country' in Movie entity
-        genre: jsonArray[i].Genre, // Map 'Genre' from CSV to 'genre' in Movie entity
-        colour: jsonArray[i].Colour, // Map 'Colour' from CSV to 'colour' in Movie entity
+        title: jsonArray[i].Title,
+        director: jsonArray[i].Director,
+        year: jsonArray[i].Year,
+        country: jsonArray[i].Country,
+        genre: jsonArray[i].Genre,
+        colour: jsonArray[i].Colour,
       };
       await queryRunner.manager.insert(MovieEntity, movie);
       console.log('Done.');
