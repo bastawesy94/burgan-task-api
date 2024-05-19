@@ -23,8 +23,8 @@ console.log('##############', process.env.DB_URL);
     }),
     CacheModule.register({
       store: redisStore,
-      host: 'localhost',
-      port: 6379,
+      host: process.env.REDIS_HOST || 'localhost',
+      port: Number(process.env.REDIS_PORT) || 6379,
       isGlobal: true,
     }),
     UserModule,
