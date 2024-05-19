@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { from, Observable } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
 import { Repository } from 'typeorm';
 import { WatchListEntity } from '../models/watch-list.entity';
 import { UserEntity } from '../../user/models/user.entity';
@@ -24,17 +24,40 @@ export class WatchListService {
   ) { }
 
   findAll(): Observable<any[]> {
-    return from(this.watchListRepository.find({
-      relations: ['user', 'movie'],
-    }));
+    return from(
+      this.watchListRepository
+        .createQueryBuilder('watchList')
+        .leftJoinAndSelect('watchList.user', 'user')
+        .leftJoinAndSelect('watchList.movie', 'movie')
+        .select('user.id', 'userId')
+        .addSelect('movie.id', 'movieId')
+        .addSelect('movie.title', 'movieTitle')
+        .groupBy('user.id, movie.id, movie.title')
+        .getRawMany(),
+    ).pipe(
+      map(results => {
+        const usersMap = {};
+        results.forEach(result => {
+          const userId = result.userId;
+          if (!usersMap[userId]) {
+            usersMap[userId] = {
+              userId: userId,
+              movies: []
+            };
+          }
+          usersMap[userId].movies.push({
+            movieId: result.movieId,
+            movieTitle: result.movieTitle
+          });
+        });
+        return Object.values(usersMap);
+      })
+    );
   }
 
   async addToWatchList(createWatchListDto: CreateWatchListDto): Promise<WatchListEntity> {
     const { userId, movieId } = createWatchListDto;
-    console.log("input -->",createWatchListDto)
     const user = await this.userRepository.findOne({ where: { id: userId } });
-    console.log("userId -->", userId)
-    console.log("movieId -->", movieId)
     const movie = await this.movieRepository.findOne({ where: { id: movieId } });
     const watchlistEntry = new WatchListEntity();
     watchlistEntry.user = user;
