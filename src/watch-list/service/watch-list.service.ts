@@ -8,6 +8,7 @@ import { MovieEntity } from '../../movie/models/movie.entity';
 import { CreateWatchListDto } from '../models/dto/CreateWatchList.dto';
 import axios from 'axios';
 import * as dotenv from 'dotenv';
+import datasource from '@src/datasource.config';
 
 dotenv.config();
 
@@ -23,8 +24,9 @@ export class WatchListService {
   ) { }
 
   findAll(): Observable<any[]> {
-    //need handle dto
-    return from(this.watchListRepository.find());
+    return from(this.watchListRepository.find({
+      relations: ['user', 'movie'],
+    }));
   }
 
   async addToWatchList(createWatchListDto: CreateWatchListDto): Promise<WatchListEntity> {
@@ -80,5 +82,11 @@ export class WatchListService {
         console.log(err);
       }
     }
+  }
+  async getWatchListByUserId(userId: number): Promise<WatchListEntity[]> {
+    return this.watchListRepository.find({
+      where: { user: { id: userId } },
+      relations: ['movie'],
+    });
   }
 }

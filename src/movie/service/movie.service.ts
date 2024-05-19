@@ -24,8 +24,8 @@ export class MovieService {
   }
 
   async searchMovies(searchDTO: MovieSearchDTO): Promise<any> {
-    const { title, director, page, year, country, genre, color, limit } =
-      searchDTO;
+    const { title, director, page=1, year, country, genre, color, limit=10 } =
+      searchDTO; 
     const cacheKey = `movies_${title}_${director}_${year}_${country}_${genre}_${color}_${page}_${limit}`;
     const cachedMovies = await this.cacheManager.get<{
       data: MovieEntity[];
